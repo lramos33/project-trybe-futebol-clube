@@ -1,0 +1,17 @@
+import { Request, Response, NextFunction } from 'express';
+import Validation from '../services/validations.service';
+
+class LoginController {
+  static postLogin = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { email, password } = req.body;
+      const userData = await Validation.approvedValidation(email, password);
+
+      return res.status(200).json(userData);
+    } catch (error) {
+      next(error);
+    }
+  };
+}
+
+export default LoginController;

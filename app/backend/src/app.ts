@@ -21,7 +21,7 @@ class App {
     this.app.use(accessControl);
     this.app.use(express.json());
 
-    // this.app.use('/login', routes.login);
+    this.app.use('/login', routes.login);
 
     this.app.use(error);
   }
