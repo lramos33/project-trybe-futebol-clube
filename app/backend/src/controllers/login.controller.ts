@@ -12,6 +12,15 @@ class LoginController {
       next(error);
     }
   };
+
+  static getLogin = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { user: { role } } = req.body;
+      return res.status(200).json(role);
+    } catch (error) {
+      next(error);
+    }
+  };
 }
 
 export default LoginController;
