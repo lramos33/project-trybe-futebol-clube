@@ -1,3 +1,4 @@
+import * as bcryptjs from 'bcryptjs';
 import Users from '../database/models/Users';
 import Token from './token.service';
 
@@ -20,7 +21,7 @@ class Validations {
     }
 
     if (password.length <= 6) {
-      return { code: 400, message: 'Incorrect email or password' };
+      return { code: 401, message: 'Incorrect email or password' };
     }
   };
 
@@ -28,11 +29,11 @@ class Validations {
     const userData = await Users.findOne({ where: { email } });
 
     if (!userData) {
-      return { code: 400, message: 'Unauthorized user' };
+      return { code: 401, message: 'Incorrect email or password' };
     }
 
-    if (userData.password !== password) {
-      return { code: 400, message: 'Unauthorized user' };
+    if (!bcryptjs.compareSync(password, userData.password)) {
+      return { code: 401, message: 'Incorrect email or password' };
     }
   };
 
