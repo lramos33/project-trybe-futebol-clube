@@ -1,13 +1,13 @@
 import * as express from 'express';
+import routes from './routes';
+import error from './middlewares/error.middleware';
 
 class App {
   public app: express.Express;
-  // ...
 
   constructor() {
-    // ...
+    this.app = express();
     this.config();
-    // ...
   }
 
   private config(): void {
@@ -19,10 +19,13 @@ class App {
     };
 
     this.app.use(accessControl);
-    // ...
+    this.app.use(express.json());
+
+    // this.app.use('/login', routes.login);
+
+    this.app.use(error);
   }
 
-  // ...
   public start(PORT: string | number):void {
     this.app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
   }
