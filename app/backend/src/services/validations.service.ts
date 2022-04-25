@@ -7,7 +7,7 @@ const UNAUTHORIZED_ERROR_MESSAGE = 'Incorrect email or password'; // status code
 
 const EMAIL_REGEX = /(.+)@(.+){2,}\.(.+){2,}/;
 
-class Validations {
+class ValidationsService {
   static emailValidation = (email: string) => {
     if (email === '') {
       return { code: 400, message: BAD_REQUEST_ERROR_MESSAGE };
@@ -55,4 +55,4 @@ class Validations {
   };
 }
 
-export default Validations;
+export default ValidationsService;

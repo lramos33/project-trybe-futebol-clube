@@ -4,7 +4,7 @@ import Users from '../database/models/Users';
 
 const JWT_SECRET = fs.readFileSync('jwt.evaluation.key', 'utf8');
 
-class Token {
+class TokenService {
   static generateToken = (data: { email: string, password: string }): string => (
     jwt.sign(data, JWT_SECRET, { expiresIn: '7d', algorithm: 'HS256' })
   );
@@ -15,4 +15,4 @@ class Token {
   };
 }
 
-export default Token;
+export default TokenService;
