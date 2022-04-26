@@ -1,4 +1,5 @@
 import CreateMatchBody from '../interfaces/createMatchBody';
+import EditMatchBody from '../interfaces/editMatchBody';
 import Matches from '../database/models/Matches';
 import Teams from '../database/models/Teams';
 
@@ -48,6 +49,10 @@ class MatchesService {
       awayTeamGoals,
       inProgress,
     });
+  };
+
+  static editMatch = async ({ id, homeTeamGoals, awayTeamGoals }: EditMatchBody) => {
+    await Matches.update({ homeTeamGoals, awayTeamGoals }, { where: { id } });
   };
 }
 

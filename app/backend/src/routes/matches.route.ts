@@ -15,9 +15,11 @@ matchesRouter.post(
   MatchesController.createMatch,
 );
 
-// matchesRouter.patch(
-//   '/:id',
-// );
+matchesRouter.patch(
+  '/:id',
+  ValidateJWT.validateToken,
+  MatchesController.editMatch,
+);
 
 // matchesRouter.patch(
 //   '/:id/finish',

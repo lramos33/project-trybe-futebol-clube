@@ -3,6 +3,7 @@ import Matches from '../services/matches.service';
 
 const UNAUTHORIZED_ERROR_MESSAGE = 'It is not possible to create a match with two equal teams'; // status code: 401
 const NOT_FOUND_ERROR_MESSAGE = 'There is no team with such id!'; // status code: 404
+const EDITED_MATCH_MESSAGE = 'Match Edited'; // status code: 200
 
 class MatchesController {
   static getAll = async (req: Request, res: Response, next: NextFunction) => {
@@ -32,6 +33,17 @@ class MatchesController {
       }
 
       return res.status(201).json(await Matches.createMatch(req.body));
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  static editMatch = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { homeTeamGoals, awayTeamGoals } = req.body;
+      const { id } = req.params;
+      await Matches.editMatch({ id, homeTeamGoals, awayTeamGoals });
+      return res.status(200).json({ message: EDITED_MATCH_MESSAGE });
     } catch (error) {
       next(error);
     }
