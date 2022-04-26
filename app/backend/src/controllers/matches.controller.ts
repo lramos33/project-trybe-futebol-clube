@@ -13,6 +13,14 @@ class MatchesController {
       next(error);
     }
   };
+
+  static createMatch = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      return res.status(201).json(await Matches.createMatch(req.body));
+    } catch (error) {
+      next(error);
+    }
+  };
 }
 
 export default MatchesController;

@@ -1,3 +1,4 @@
+import CreateMatchBody from '../interfaces/createMatchBody';
 import Matches from '../database/models/Matches';
 import Teams from '../database/models/Teams';
 
@@ -33,6 +34,17 @@ class MatchesService {
           attributes: ['teamName'],
         },
       ],
+    });
+  };
+
+  static createMatch = async (requestBody: CreateMatchBody) => {
+    const { homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, inProgress } = requestBody;
+    return Matches.create({
+      homeTeam,
+      awayTeam,
+      homeTeamGoals,
+      awayTeamGoals,
+      inProgress,
     });
   };
 }
