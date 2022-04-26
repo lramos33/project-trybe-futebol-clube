@@ -16,6 +16,25 @@ class MatchesService {
       },
     ],
   }));
+
+  static getByQuery = async (query: string) => {
+    const inProgress = query === 'true' ? 1 : 0;
+    return Matches.findAll({
+      where: { inProgress },
+      include: [
+        {
+          model: Teams,
+          as: 'teamHome',
+          attributes: ['teamName'],
+        },
+        {
+          model: Teams,
+          as: 'teamAway',
+          attributes: ['teamName'],
+        },
+      ],
+    });
+  };
 }
 
 export default MatchesService;
