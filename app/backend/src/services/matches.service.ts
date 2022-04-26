@@ -3,6 +3,8 @@ import Matches from '../database/models/Matches';
 import Teams from '../database/models/Teams';
 
 class MatchesService {
+  static verifyTeam = async (id: number) => Teams.findByPk(id);
+
   static getAll = async () => (Matches.findAll({
     include: [
       {
