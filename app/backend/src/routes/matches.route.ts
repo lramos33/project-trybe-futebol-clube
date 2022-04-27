@@ -21,8 +21,10 @@ matchesRouter.patch(
   MatchesController.editMatch,
 );
 
-// matchesRouter.patch(
-//   '/:id/finish',
-// );
+matchesRouter.patch(
+  '/:id/finish',
+  ValidateJWT.validateToken,
+  MatchesController.finishMatch,
+);
 
 export default matchesRouter;

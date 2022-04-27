@@ -54,6 +54,10 @@ class MatchesService {
   static editMatch = async ({ id, homeTeamGoals, awayTeamGoals }: EditMatchBody) => {
     await Matches.update({ homeTeamGoals, awayTeamGoals }, { where: { id } });
   };
+
+  static finishMatch = async (id: string) => {
+    await Matches.update({ inProgress: false }, { where: { id } });
+  };
 }
 
 export default MatchesService;
