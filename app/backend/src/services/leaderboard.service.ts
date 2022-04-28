@@ -6,7 +6,7 @@ import Leaderboard from '../interfaces/leaderboard';
 class LeaderboardService {
   static getMatchesByHomeId = async (id: number) => (
     Matches.findAll({ where: { homeTeam: id, inProgress: false } })
-  )
+  );
 
   static setTotalPoints = (victories: number, draws: number) => (victories * 3) + draws;
 
