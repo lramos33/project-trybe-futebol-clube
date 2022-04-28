@@ -4,7 +4,9 @@ import Teams from '../database/models/Teams';
 import Leaderboard from '../interfaces/leaderboard';
 
 class LeaderboardService {
-  static getMatchesByHomeId = async (id: number) => Matches.findAll({ where: { homeTeam: id } });
+  static getMatchesByHomeId = async (id: number) => (
+    Matches.findAll({ where: { homeTeam: id, inProgress: false } })
+  )
 
   static setTotalPoints = (victories: number, draws: number) => (victories * 3) + draws;
 
@@ -13,7 +15,7 @@ class LeaderboardService {
   static setGoalsBalance = (goalsFavor: number, goalsOwn: number) => goalsFavor - goalsOwn;
 
   static setEfficiency = (totalPoints: number, totalGames: number) => (
-    +(totalPoints / ((totalGames * 3) * 100)).toFixed(2)
+    +((totalPoints / (totalGames * 3)) * 100).toFixed(2)
   );
 
   static setTotalVictories = (matches: Match[]) => {
