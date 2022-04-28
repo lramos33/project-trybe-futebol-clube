@@ -3,9 +3,10 @@ import LeaderboardController from '../controllers/leaderboard.controller';
 
 const leaderboardRouter = express.Router();
 
-// leaderboardRouter.get(
-//   '/',
-// );
+leaderboardRouter.get(
+  '/',
+  LeaderboardController.getGeneralLeaderboard,
+);
 
 leaderboardRouter.get(
   '/home',
