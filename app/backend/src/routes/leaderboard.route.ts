@@ -12,8 +12,9 @@ leaderboardRouter.get(
   LeaderboardController.getAll,
 );
 
-// leaderboardRouter.get(
-//   '/away',
-// );
+leaderboardRouter.get(
+  '/away',
+  LeaderboardController.getAll,
+);
 
 export default leaderboardRouter;
